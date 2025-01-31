@@ -1,4 +1,4 @@
-The Aaseya Inspection Solution is an end-to-end inspection management system that seamlessly integrates SAP’s Productive Maintenance System with Camunda BPM to automate and optimize the inspection lifecycle. From incident reporting to task allocation, dynamic checklist generation, and report approvals, the solution enhances compliance, reduces risks, and improves operational efficiency.
+The Aaseya SAP Integrated Inspection Solution is an end-to-end inspection management system that seamlessly integrates SAP’s Productive Maintenance System with Camunda BPM to automate and optimize the inspection lifecycle. From incident reporting to task allocation, dynamic checklist generation, and report approvals, the solution enhances compliance, reduces risks, and improves operational efficiency.
 
 Features:
 
