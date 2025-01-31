@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0lu9pvg" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.29.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <bpmn:process id="AISSAPProcess" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Inspection Intiated">
+      <bpmn:outgoing>Flow_1qt5ig0</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1qt5ig0" sourceRef="StartEvent_1" targetRef="Activity_1a6re2m" />
+    <bpmn:callActivity id="Activity_1a6re2m" name="Aaseya Inspection Process">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="AIS_SAPProcess" propagateAllChildVariables="false" propagateAllParentVariables="false" />
+        <zeebe:ioMapping>
+          <zeebe:input source="=AISBusinessKey" target="AISBusinessKey" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1qt5ig0</bpmn:incoming>
+      <bpmn:outgoing>Flow_1f67r7n</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:serviceTask id="Activity_0nvflei" name="Notification Closure">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="notify-close" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1f67r7n</bpmn:incoming>
+      <bpmn:outgoing>Flow_1vxu9lq</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1f67r7n" sourceRef="Activity_1a6re2m" targetRef="Activity_0nvflei" />
+    <bpmn:endEvent id="Event_0ipjrvw" name="Inspection Completed">
+      <bpmn:incoming>Flow_1vxu9lq</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1vxu9lq" sourceRef="Activity_0nvflei" targetRef="Event_0ipjrvw" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="AISSAPProcess">
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="182" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="155" y="145" width="90" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0omhe6l_di" bpmnElement="Activity_1a6re2m">
+        <dc:Bounds x="270" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1owshgr_di" bpmnElement="Activity_0nvflei">
+        <dc:Bounds x="480" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ipjrvw_di" bpmnElement="Event_0ipjrvw">
+        <dc:Bounds x="682" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="673" y="145" width="54" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1qt5ig0_di" bpmnElement="Flow_1qt5ig0">
+        <di:waypoint x="218" y="120" />
+        <di:waypoint x="270" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1f67r7n_di" bpmnElement="Flow_1f67r7n">
+        <di:waypoint x="370" y="120" />
+        <di:waypoint x="480" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vxu9lq_di" bpmnElement="Flow_1vxu9lq">
+        <di:waypoint x="580" y="120" />
+        <di:waypoint x="682" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
